@@ -1,6 +1,20 @@
+.Loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #0f273d; */
+  width: 100%;
+}
+
+.Loading-text {
+  margin-bottom: 20px;
+  font-size: large;
+}
+
 .Loading {
-    width: 28px;
-    height: 28px;
+    width: 48px;
+    height: 48px;
     display: inline-block;
     border: 2px solid #fff;
     border-right-color: transparent;

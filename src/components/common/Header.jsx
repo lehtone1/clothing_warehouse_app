@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => (
-  <div>
+  <div className="Header">
     <Link className="Product-category-button" to="/jackets">
       <span className="Product-category-info">Jackets</span>
     </Link>
