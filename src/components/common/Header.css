@@ -1,0 +1,25 @@
+.Product-category-button {
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 16px;
+    /* background-color: #4997e5; */
+    transition: background-color .2s;
+    color: white;
+    cursor: pointer;
+    margin: 10px;
+    width: 44px;
+    height: 34px;
+  }
+  
+  .Product-category-button:hover {
+    background-color: #457cb2;
+  }
+  
+  .Product-category-button:focus {
+    outline: none;
+  }
+  
+  .Product-category-info {
+    font-size: 24px;
+  }
