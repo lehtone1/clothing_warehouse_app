@@ -11,6 +11,16 @@ class Table extends React.Component {
     };
   }
 
+  renderAvailability = (availability) => {
+    if (availability === 'INSTOCK') {
+      return <span className="availability-in">{availability}</span>;
+    }
+    if (availability === 'OUTOFSTOCK') {
+      return <span className="availability-out">{availability}</span>;
+    }
+    return <span className="availability-some">{availability}</span>;
+  }
+
   render() {
     const { items } = this.state;
     return (
@@ -37,7 +47,7 @@ class Table extends React.Component {
                 </td>
                 <td>{item.color}</td>
                 <td>{item.manufacturer}</td>
-                <td>{item.availability}</td>
+                <td>{this.renderAvailability(item.availability)}</td>
               </tr>
             ))}
           </tbody>
