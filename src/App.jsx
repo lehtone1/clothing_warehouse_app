@@ -44,6 +44,27 @@ class App extends React.Component {
     return result[1];
   }
 
+  addAvailabilitytoProduct = (product, availabilityDict) => {
+    if (product.id in availabilityDict) {
+      const updatedProduct = product;
+      updatedProduct.availability = availabilityDict[updatedProduct.id];
+      return updatedProduct;
+    }
+    return product;
+  }
+
+  createAvailabilityDict(availabilityData) {
+    const availabilityDict = {};
+
+    availabilityData.forEach((availability) => {
+      const id = availability.id.toLowerCase();
+      const status = this.getAvailabilityValue(availability.DATAPAYLOAD);
+      availabilityDict[id] = status;
+    });
+
+    return availabilityDict;
+  }
+
   fetchProductData(category) {
     fetch(`${API_URL}/products/${category}`)
       .then(handleResponse)
@@ -61,39 +82,19 @@ class App extends React.Component {
 
   addAvailabilityInformation(availabilityData) {
     let { jackets, shirts, accessories } = this.state;
-    const availabilityDict = {};
+    const availabilityDict = this.createAvailabilityDict(availabilityData);
 
-    availabilityData.forEach((availability) => {
-      const id = availability.id.toLowerCase();
-      const status = this.getAvailabilityValue(availability.DATAPAYLOAD);
-      availabilityDict[id] = status;
-    });
-    jackets = jackets.map((item) => {
-      if (item.id in availabilityDict) {
-        const itemUpdated = item;
-        itemUpdated.availability = availabilityDict[itemUpdated.id];
-        return itemUpdated;
-      }
-      return item;
-    });
+    jackets = jackets.map((product) => (
+      this.addAvailabilitytoProduct(product, availabilityDict)
+    ));
 
-    shirts = shirts.map((item) => {
-      if (item.id in availabilityDict) {
-        const itemUpdated = item;
-        itemUpdated.availability = availabilityDict[itemUpdated.id];
-        return itemUpdated;
-      }
-      return item;
-    });
+    shirts = shirts.map((product) => (
+      this.addAvailabilitytoProduct(product, availabilityDict)
+    ));
 
-    accessories = accessories.map((item) => {
-      if (item.id in availabilityDict) {
-        const itemUpdated = item;
-        itemUpdated.availability = availabilityDict[itemUpdated.id];
-        return itemUpdated;
-      }
-      return item;
-    });
+    accessories = accessories.map((product) => (
+      this.addAvailabilitytoProduct(product, availabilityDict)
+    ));
 
     this.setState({
       jackets,
