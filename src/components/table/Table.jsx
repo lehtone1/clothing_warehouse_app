@@ -31,7 +31,10 @@ class Table extends React.Component {
               <tr key={item.id}>
                 <td>{item.name}</td>
                 <td>{item.id}</td>
-                <td>{item.price}</td>
+                <td>
+                  <span className="Table-price">€ </span>
+                  {item.price}
+                </td>
                 <td>{item.color}</td>
                 <td>{item.manufacturer}</td>
                 <td>{item.availability}</td>
